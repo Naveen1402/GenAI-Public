@@ -77,3 +77,12 @@ Open the Locust web interface:
 Navigate to http://localhost:8089 in your browser.
 Start the test:
 Enter the number of users you want to simulate and a spawn rate, then click "Start swarming". You can monitor the performance of your API in real-time.
+
+Project Structure
+.
+├── main.py             # The main FastAPI application logic
+├── test_main.py        # Automated tests using pytest
+├── locustfile.py       # User behavior script for load testing
+├── requirements.txt    # Python dependencies
+├── store.db            # Local SQLite database for development
+└── test.db             # Isolated SQLite database for testing

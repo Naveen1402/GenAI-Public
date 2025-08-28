@@ -1,0 +1,89 @@
+***Vector Database with Qwen Embeddings, FAISS & Qdrant
+
+This project demonstrates how to build a retrieval system using Qwen embeddings and store them in vector databases like FAISS and Qdrant.
+
+Workflow
+Dataset Preparation
+Collect or generate a dataset (≥2000 records) in formats like CSV/TXT/DOCX/PDF.
+Example: data/my_dataset.csv.
+Data Pipeline
+Load → Read raw text data.
+Clean → Remove unnecessary symbols, stopwords, and formatting.
+Chunk → Split text into smaller pieces for embedding (e.g., 500 tokens).
+Embed → Generate embeddings using Qwen/Qwen3-Embedding-0.6B.
+Store → Save chunks and embeddings locally (e.g., in .parquet or .csv).
+Vector Database Integration
+FAISS: Store embeddings locally for similarity search.
+Qdrant: Store embeddings in a cloud/self-hosted vector DB with metadata.
+Query Pipeline
+Input a query.
+Generate query embedding with Qwen.
+Search top-k similar results from FAISS/Qdrant.
+Return most relevant text chunks.
+
+Visualization
+Apply PCA/TSNE on stored vectors.
+
+Installation
+# Clone repo
+git clone https://github.com/Naveen1402/GenAI-Public.git
+cd GenAI-Public
+
+# Create environment
+conda create -n vectordb python=3.10
+conda activate vectordb
+
+# Install dependencies
+pip install -r requirements.txt
+
+KeyFiles
+embedding_pipeline.py → Data loading, cleaning, chunking, embedding.
+store_embeddings.py → Save embeddings (parquet/csv).
+faiss_search.py → FAISS similarity search.
+qdrant_search.py → Qdrant similarity search.
+visualize_embeddings.py → Dimensionality reduction & cluster visualization.
+
+Embedding and Save
+from embedding_pipeline import generate_embeddings
+generate_embeddings("data/my_dataset.csv", "output/embeddings.parquet")
+
+Load embeddings into FAISS:
+from faiss_search import load_faiss, search_faiss
+index = load_faiss("output/embeddings.parquet")
+results = search_faiss(index, "Explain supervised learning")
+
+Load into Qdrant:
+from qdrant_search import load_qdrant, query_qdrant
+load_qdrant("output/embeddings.parquet")
+query_qdrant("Explain supervised learning")
+
+Visualization
+from visualize_embeddings import plot_clusters
+plot_clusters("output/embeddings.parquet", method="pca")
+
+Output: Cluster plot showing semantic grouping of text chunks.
+
+Demo Steps
+Generate dataset & embeddings.
+Push embeddings into FAISS/Qdrant.
+Run queries & retrieve top-k similar results.
+Visualize vector clusters.
+Record and share a demo video.
+
+***Tech Stack
+Embedding Model: Qwen/Qwen3-Embedding-0.6B
+Databases: FAISS, Qdrant
+Visualization: PCA, t-SNE, Matplotlib
+Language: Python 3.10
+
+
+
+
+
+
+
+
+
+
+
+groupings in data.

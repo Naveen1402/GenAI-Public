@@ -1,0 +1,12 @@
+numpy
+pandas
+scikit-learn
+matplotlib
+faiss-cpu
+qdrant-client
+torch
+transformers
+sentencepiece
+protobuf
+python-docx
+pypdf

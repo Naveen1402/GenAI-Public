@@ -1,0 +1,43 @@
+/* Template to generate code in the best format */
+
+/* ITK: Create Item and Save (Template) */
+#include <tccore/item.h>
+#include <tc/tc.h>
+#include <tc/emh.h>
+#include <stdio.h>
+
+int main() {
+    int ifail = ITK_ok;
+    tag_t new_item = NULLTAG;
+
+    /* Parameters */
+    const char* item_type = "{{ item_type }}";
+    const char* item_id = "ITEM001";
+    const char* item_rev = "{{ rev }}";
+
+    /* Create Item */
+    ifail = ITEM_create_item(TC_basic_user, item_type, item_id, item_rev, &new_item);
+    if (ifail != ITK_ok) {
+        printf("ERROR: ITEM_create_item failed: %d\n", ifail);
+        return ifail;
+    }
+
+    /* Refresh Object */
+    ifail = AOM_refresh(&new_item);
+    if (ifail != ITK_ok) {
+        printf("ERROR: AOM_refresh failed: %d\n", ifail);
+        return ifail;
+    }
+
+    /* Save Object */
+    ifail = AOM_save(&new_item);
+    if (ifail != ITK_ok) {
+        printf("ERROR: AOM_save failed: %d\n", ifail);
+        return ifail;
+    }
+
+    printf("✅ Item created successfully: %s, rev: %s\n", item_id, item_rev);
+    return ITK_ok;
+}
+
+

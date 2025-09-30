@@ -1,0 +1,11 @@
+streamlit
+fpdf
+pypdf
+faiss-cpu
+langchain
+euriai
+langchain_community
+sentence-transformers
+python-docx
+openai
+tiktoken

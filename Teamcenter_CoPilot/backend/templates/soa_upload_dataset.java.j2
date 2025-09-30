@@ -1,0 +1,35 @@
+/* SOA: Upload Dataset Template */
+import com.teamcenter.soa.client.model.strong.Dataset;
+import com.teamcenter.soa.client.model.strong.ItemRevision;
+import com.teamcenter.soa.client.model.strong.SoftwareSession;
+import com.teamcenter.soa.client.SoaService;
+
+public class UploadDatasetExample {
+
+    public static void main(String[] args) {
+        try {
+            SoftwareSession session = SoaService.getSession();
+            
+            // Parameters
+            String itemId = "{{ item_id }}";
+            String datasetName = "{{ dataset_name }}";
+            String filePath = "{{ file_path }}";
+
+            // Load ItemRevision
+            ItemRevision rev = (ItemRevision) session.getService("DataManagementService")
+                                    .loadObjects(itemId);
+
+            // Create Dataset
+            Dataset ds = (Dataset) session.getService("DataManagementService")
+                                    .createDataset(rev, datasetName);
+
+            // Upload File
+            ds.addFile(filePath);
+
+            System.out.println("✅ Dataset uploaded successfully: " + datasetName);
+
+        } catch (Exception e) {
+            System.err.println("ERROR: " + e.getMessage());
+        }
+    }
+}

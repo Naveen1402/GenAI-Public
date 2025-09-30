@@ -3,7 +3,7 @@ from document_loader import load_document
 from Text_processor import split_text
 from Vector_store import create_faiss_index, retrive_relevant_docs
 from RAG_Chain import get_chat_model, ask_chat_model
-from config import EURI_API_KEY
+from config import API_KEY
 import time
 
 # Streamlit config

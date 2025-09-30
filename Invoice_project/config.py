@@ -1,0 +1,4 @@
+
+# LLM Model
+EURI_API_KEY  = "euri-77b53449be34d35ea79c0db39603969947c06872e46c1fabb4b1564e475149c6"
+MODEL         = "gpt-4.1-nano"

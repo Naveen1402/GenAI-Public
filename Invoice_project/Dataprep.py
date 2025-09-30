@@ -4,7 +4,7 @@ import json
 import warnings
 from typing import Dict, Any, List
 from Fileload import DB_PATH, POLL_SEC, INPUT_DIR, save_seen, seen
-from config import EURI_API_KEY, MODEL
+from config import API_KEY, MODEL
 
 # -------------------------------
 # OCR Lazy Loader
